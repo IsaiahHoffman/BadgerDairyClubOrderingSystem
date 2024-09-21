@@ -36,7 +36,7 @@ async function readSETUP() {
       data = data.slice(data.indexOf(",") + 1, data.length);
 
       var fileName = data.indexOf("\n");
-      fileName = data.slice(1, fileName - 1);
+      fileName = data.slice(1, fileName);
       data = data.slice(data.indexOf("\n") + 1, data.length);
       orderItems.push([name, price, fileName])
       test++
