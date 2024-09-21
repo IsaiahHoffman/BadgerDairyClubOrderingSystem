@@ -1,14 +1,17 @@
 import express from "express";
 import fs from "fs";
+import { List } from "linked-list";
 
 function makeLogEntry(comment, data) {
   const date = new Date()
   var str = date.getMonth().toString() + "/" + date.getDate().toString() + "/" + date.getFullYear().toString() + " " + date.getHours().toString() + ":" + date.getMinutes().toString();
+  // orders.append(new Item([data]))
+  // console.log(orders)
   return JSON.stringify([str, comment, data, date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()]);
 }
 
 function updateLog(data) {
-  fs.appendFile('log.txt', data + "\n", (err) => {
+  fs.appendFile('log' + year + '.txt', data + "\n", (err) => {
     if (err) {
       console.log(err);
     }
@@ -16,6 +19,24 @@ function updateLog(data) {
 }
 
 async function readSETUP() {
+  fs.appendFile('log' + year + '.txt', "", (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+
+  // log data extraction
+  fs.readFile('log' + year + '.txt', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    var line = data.slice(0, data.indexOf("\n"))
+    console.log(line)
+    data = data.slice(data.indexOf("\n") + 1, data.length);
+    console.log("(", data, ")")
+  })
+
   // Setup init
   var orderItems = []
   fs.readFile('SETUP.txt', 'utf8', (err, data) => {
@@ -47,7 +68,7 @@ async function readSETUP() {
       test++
     }
 
-  // Large Sponsors
+    // Large Sponsors
     //TopLeft
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
     data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
@@ -181,11 +202,11 @@ async function readSETUP() {
         "<table class='orderItemTable'>" +
         "<tr>" +
         "<td class='foodItem'>"
-        if (orderItems[i][2] != "NA") {
-          content = content + "<img class='foodImage' src='./FoodItems/" + orderItems[i][2] + "'>"
-        }
+      if (orderItems[i][2] != "NA") {
+        content = content + "<img class='foodImage' src='./FoodItems/" + orderItems[i][2] + "'>"
+      }
 
-        content = content + "</td>" +
+      content = content + "</td>" +
         "<td class='decrease' id='" + orderItems[i][0] + "dec'><div class='button'>-</div></td>" +
         "<td class='number' id='" + orderItems[i][0] + "Num'>0</td>" +
         "<td class='increase' id='" + orderItems[i][0] + "inc'><div class='button'>+</div></td>" +
@@ -196,7 +217,7 @@ async function readSETUP() {
       "$" + orderItems[i][1]
     }
     content = content +
-    "</div>" +
+      "</div>" +
       "</td>" +
       // Ads right
       "<td id='midRight'>" +
@@ -222,19 +243,22 @@ async function readSETUP() {
         // file written successfully
       }
     });
-    console.log(orderItemsG, majSponsors, cheeseOfDay, tier3, coupons)
+    // console.log(orderItemsG, majSponsors, cheeseOfDay, tier3, coupons)
   });
 }
 
+var orders = new List()
 var orderItemsG
 var majSponsors = []
 var cheeseOfDay = []
 var tier3 = []
 var coupons = []
+var masterOrderNum = 1
+const date = new Date()
+var year = date.getFullYear().toString()
 async function init() {
   await readSETUP()
 }
-
 init()
 
 
@@ -276,7 +300,7 @@ app.get('/', (req, res) => {
   } else {
     cheeseOfTheDayLogo = cheeseOfDay[date.getDay() - 1]
   }
-  res.render('pages/orderPage', {cheeseOfTheDayLogo : cheeseOfTheDayLogo, tier3 : tier3});
+  res.render('pages/orderPage', { cheeseOfTheDayLogo: cheeseOfTheDayLogo, tier3: tier3 });
 });
 
 app.post('/load', (req, res) => {
@@ -293,7 +317,8 @@ app.post('/submit', (req, res) => {
   let data = req.body;
   var orderNumber = data['orderNumber']
   if (orderNumber == "Error") {
-    orderNumber = Math.round(Math.random() * 1000, 0);
+    orderNumber = masterOrderNum
+    masterOrderNum += 1
     data['orderNumber'] = orderNumber
     orders[data['orderNumber']] = data
     updateLog(makeLogEntry("New Order", data));
@@ -301,7 +326,7 @@ app.post('/submit', (req, res) => {
     updateLog(makeLogEntry("Changed Order", data));
     orders[data[orderNumber]] = data
   }
-  res.status(200).json({orderNumber : orderNumber});
+  res.status(200).json({ orderNumber: orderNumber });
 })
 
 app.post('/resubmit', (req, res) => {
@@ -312,7 +337,7 @@ app.post('/resubmit', (req, res) => {
   // console.log(data)
 })
 
-app.get('/orderProcessing', (req, res) => {
+app.get('/op', (req, res) => {
   res.render('pages/orderProcessing');
 });
 
@@ -320,8 +345,8 @@ app.post('/orderLookUp', (req, res) => {
   let data = (req.body)
   var ticket = data['ticket']
 
-  res.status(200).json({orderData : orders[ticket]});
-  
+  res.status(200).json({ orderData: orders[ticket] });
+
 })
 
 app.listen(port, () => {
