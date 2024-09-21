@@ -82,6 +82,9 @@ async function readSETUP() {
     // Cheese of Day
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
     data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
+    if (data.indexOf("\n") == 0) {
+      data = data.slice(1, data.length)
+    }
     for (var i = 0; i < 5; i++) {
       data = data.slice(data.indexOf("\n") + 1, data.length);
       var cheese = data.indexOf("\n");
@@ -93,6 +96,9 @@ async function readSETUP() {
     // Tier3
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
     data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
+    if (data.indexOf("\n") == 0) {
+      data = data.slice(1, data.length)
+    }
     test = 0
     while (data.indexOf("!!!---!!!") != 0 && test < 1000) {
       var fileName = data.indexOf("\n");
@@ -105,6 +111,9 @@ async function readSETUP() {
     // Coupons
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
     data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
+    if (data.indexOf("\n") == 0) {
+      data = data.slice(1, data.length)
+    }
     test = 0
     while (data.indexOf("!!!---!!!") != 0 && test < 1000) {
       var name = data.indexOf(",");
@@ -173,7 +182,7 @@ async function readSETUP() {
         "<tr>" +
         "<td class='foodItem'>"
         if (orderItems[i][2] != "NA") {
-          content = content + "<img src='./FoodItems/" + orderItems[i][2] + "'>"
+          content = content + "<img class='foodImage' src='./FoodItems/" + orderItems[i][2] + "'>"
         }
 
         content = content + "</td>" +
