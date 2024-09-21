@@ -25,7 +25,7 @@ async function readSETUP() {
     }
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length);
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length);
-    data = data.slice(data.indexOf("!!!---!!!") + 11, data.length);
+    data = data.slice(data.indexOf("!!!---!!!") + 10, data.length);
     let test = 0
     while (data.indexOf("!!!---!!!") != 0 && test < 1000) {
       var name = data.indexOf(",");
