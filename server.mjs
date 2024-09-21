@@ -199,7 +199,7 @@ async function readSETUP() {
         // file written successfully
       }
     });
-    console.log(orderItemsG)
+    console.log(cheeseOfDay, tier3, coupons)
   });
 }
 
