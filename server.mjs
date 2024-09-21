@@ -118,7 +118,7 @@ async function readSETUP() {
       "<title>Order Page</title>" +
       "<link rel='stylesheet' href='orderPage.css'>" +
       "</head>" +
-      "<body> HEEEELLLLLLLLLLLLLLLLLLLLLLOOOOOOOOOOOOOOOOOOOOOOOO" +
+      "<body>" +
       "<table id='thankyou'>" +
       "<tr>" +
       "<td><img src='./bdcLogo.jpg' id='clubLogos'></td>" +
@@ -184,7 +184,7 @@ async function readSETUP() {
       // Bottom
       "<table id='cart'>" +
       "<tr>" +
-      "<td id='cartLeft'>Cart Total: $<span id='total'>Error</span></td>" +
+      "<td id='cartLeft'>Cart Total TESTTTTT: $<span id='total'>Error</span></td>" +
       "<td id='cartMid'></td>" +
       "<td id='cartRight'><img id='cartImg' src='cart.png' alt='BDC Logo'><br>Checkout</td>" +
       "</tr>" +
