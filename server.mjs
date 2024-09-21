@@ -50,7 +50,7 @@ async function readSETUP() {
     data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
     data = data.slice(data.indexOf("\n") + 1, data.length);
     var topLeft = data.indexOf("\n");
-    topLeft = data.slice(0, topLeft - 1);
+    topLeft = data.slice(0, topLeft);
     data = data.slice(data.indexOf("\n") + 1, data.length);
 
     //TopRight
