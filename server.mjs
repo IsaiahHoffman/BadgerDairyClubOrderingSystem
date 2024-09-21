@@ -23,6 +23,8 @@ async function readSETUP() {
       console.error(err);
       return;
     }
+
+    // Order items
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length);
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length);
     data = data.slice(data.indexOf("!!!---!!!") + 10, data.length);
@@ -41,6 +43,8 @@ async function readSETUP() {
       orderItems.push([name, price, fileName])
       test++
     }
+
+  // Large Sponsors
     //TopLeft
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
     data = data.slice(data.indexOf("!!!---!!!") + 11, data.length)
@@ -73,24 +77,26 @@ async function readSETUP() {
     for (var i = 0; i < 5; i++) {
       data = data.slice(data.indexOf("\n") + 1, data.length);
       var cheese = data.indexOf("\n");
-      cheese = data.slice(0, cheese - 1);
+      cheese = data.slice(0, cheese);
       data = data.slice(data.indexOf("\n") + 1, data.length);
       cheeseOfDay.push(cheese)
     }
 
+    // Tier3
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
     data = data.slice(data.indexOf("!!!---!!!") + 11, data.length)
     test = 0
     while (data.indexOf("!!!---!!!") != 0 && test < 1000) {
       var fileName = data.indexOf("\n");
-      fileName = data.slice(0, fileName - 1);
+      fileName = data.slice(0, fileName);
       data = data.slice(data.indexOf("\n") + 1, data.length);
       tier3.push(fileName)
       test++
     }
 
+    // Coupons
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
-    data = data.slice(data.indexOf("!!!---!!!") + 11, data.length)
+    data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
     test = 0
     while (data.indexOf("!!!---!!!") != 0 && test < 1000) {
       var name = data.indexOf(",");
@@ -100,7 +106,7 @@ async function readSETUP() {
       value = data.slice(1, value);
       data = data.slice(data.indexOf(",") + 1, data.length);
       var fileName = data.indexOf("\n");
-      fileName = data.slice(1, fileName - 1);
+      fileName = data.slice(1, fileName);
       data = data.slice(data.indexOf("\n") + 1, data.length);
       coupons.push([name, value, fileName])
       test++
