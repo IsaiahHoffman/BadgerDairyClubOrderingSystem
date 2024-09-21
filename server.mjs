@@ -47,7 +47,7 @@ async function readSETUP() {
   // Large Sponsors
     //TopLeft
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
-    data = data.slice(data.indexOf("!!!---!!!") + 11, data.length)
+    data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
     data = data.slice(data.indexOf("\n") + 1, data.length);
     var topLeft = data.indexOf("\n");
     topLeft = data.slice(0, topLeft - 1);
@@ -75,7 +75,7 @@ async function readSETUP() {
 
     // Cheese of Day
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
-    data = data.slice(data.indexOf("!!!---!!!") + 11, data.length)
+    data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
     for (var i = 0; i < 5; i++) {
       data = data.slice(data.indexOf("\n") + 1, data.length);
       var cheese = data.indexOf("\n");
@@ -86,7 +86,7 @@ async function readSETUP() {
 
     // Tier3
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
-    data = data.slice(data.indexOf("!!!---!!!") + 11, data.length)
+    data = data.slice(data.indexOf("!!!---!!!") + 10, data.length)
     test = 0
     while (data.indexOf("!!!---!!!") != 0 && test < 1000) {
       var fileName = data.indexOf("\n");
