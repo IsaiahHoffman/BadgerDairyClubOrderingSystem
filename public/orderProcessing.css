@@ -1,0 +1,35 @@
+body {
+    background-color: black;
+    padding:2%;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+.item {
+    width: 300px;
+    float:inline-start;
+    margin:10px;
+}
+
+.increment {
+    background-color: white;
+    color: red;
+    font-size: 50px;
+    width: 50px;
+}
+
+.fr {
+    float:right;
+}
+
+.fl {
+    float:left;
+}
+
+.count {
+    padding-top:10px;
+}
+
+#order {
+    background-color: red;
+}

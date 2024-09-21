@@ -1,0 +1,105 @@
+DO NOT CHANGE THE THESE -> !!!---!!! <- and do not leave extra lines between
+Server uses !!!---!!! (marker), new lines, and commas to find information
+
+
+Products:
+# To add a product (NOTE: Make sure file type in png or jpeg)
+# 1. Optional: add picture of food item to public/FoodItems
+# 2. add a new line between marker and type the [name, price, fileName] (type NA if no picture used)
+Example:
+Random Gilled Cheese, 100, RandomGrilledCheesePic.jpg
+Random Gilled Cheese 2, 50, NA
+
+!!!---!!!
+American Grilled Cheese, 3, american.jpg
+Swiss Grilled Cheese, 3, NA
+Specialty, 3, NA
+Ham & Cheese, 4, NA
+Chocolate Shake, 2, NA
+Milk, 1, milk.jpg
+Chocolate Milk, 1, NA
+Orange Juice, 1, NA
+Coffee, 1, NA
+Hot Chocolate, 1, NA
+!!!---!!!
+
+
+Large Sponsors:
+# Add up to 4 large Sponsors
+# 1. Add picture to public/Sponsors/Major
+# 2. Type name of file below the location
+Example:
+RandomPlace:
+randomPic.jpeg
+
+!!!---!!!
+TopLeft:
+Brevant.png
+TopRight:
+Brevant.png
+BottomLeft:
+Cargill.png
+BottomRight:
+DinnerBell.png
+!!!---!!!
+
+
+Cheese Sponsors
+# add up to 5 cheese sponsors for each day (defaults to Monday Cheese if Sun/Sat)
+# 1. Add picture to public/Sponsors/Cheese Sponsors
+# 2. Add name of file below the day
+Example:
+Saturday:
+randomCheese.png
+
+!!!---!!!
+Monday:
+Arla.png
+Tuesday:
+BrooksFarms.png
+Wednesday:
+Saputo.png
+Thursday:
+Shullsburg.png
+Friday:
+SpringGreen.jpg
+!!!---!!!
+
+
+Tier 3:
+# Add as many tier 3 sponsors as needed
+# 1. Add picture to public/Sponsors/Tier 3
+# 2. Add name of file below
+Example:
+company1.png
+company2.jpeg
+
+!!!---!!!
+biovet.jpg
+biovet.jpg
+biovet.jpg
+biovet.jpg
+biovet.jpg
+biovet.jpg
+biovet.jpg
+biovet.jpg
+milk.jpg
+biovet.jpg
+biovet.jpg
+milk.jpg
+biovet.jpg
+biovet.jpg
+milk.jpg
+!!!---!!!
+
+
+Coupons: 
+# Add as many coupons as needed (Make sure food names match!)
+# 1. Add photo of coupon to public/Sponsors/Coupons
+# 2. Add company name, monetary value, filename of picture below
+Example:
+Random Comapny, 5, random.png
+
+!!!---!!!
+Novonesis, 3, novonesis.gif
+!!!---!!!

@@ -1,0 +1,169 @@
+body {
+    background-color: black;
+    color: rgb(0, 0, 0);
+    /* padding: 2%; */
+    margin: 4%;
+}
+
+#thankyou {
+  padding: 2.5%;
+  width: 100%;
+  font-size: 3.2vw;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+#thankyou img {
+  width: 70%;
+}
+
+#top {
+  width: 100%;
+  background-color: white;
+  border-top: 3vw solid white; 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#topLeftMajSpon {
+  padding: 3%;
+  text-align: left;
+}
+#topRightMajSpon {
+  padding: 3%;
+  text-align: right;
+}
+
+#bottomLeftMajSpon {
+  padding: 3%;
+  text-align: left;
+}
+#bottomRightMajSpon {
+  padding: 3%;
+  text-align: right;
+  bottom: 100%;
+}
+#cheeseSpons {
+  text-align: center;
+  font-size: 3.2vw;
+  width:30%;
+}
+
+.majSpon {
+  width: 95%;
+}
+
+
+
+
+
+#middle {
+  width: 100%;
+  background-color: white;
+  padding-bottom: 15%;
+}
+
+.orderItemTable {
+  width: 100%;
+}
+
+.foodItem img {
+  width: 90%;
+}
+
+.foodItem {
+  width: 25%;
+}
+
+.price {
+  width: 25%;
+  text-align: right;
+}
+
+.number {
+  text-align: center;
+}
+
+.increase {
+  width: 20%;
+  text-align: center;
+}
+
+.decrease {
+  width: 20%;
+  text-align: center;
+}
+
+.button {
+  font-size: 6vw;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  text-align: center;
+}
+
+.tier3 {
+  width: 100%;
+  margin-top: 10%;
+}
+
+#midMid {
+  padding: 2.5%;
+  background-color: rgb(116, 116, 116);
+  color: white;
+  border-top: 3vw solid rgb(116, 116, 116); 
+  border-radius: 10px;
+  text-align: center;
+}
+
+#midLeft {
+  padding: 2.5%;
+  width: 20%;
+  vertical-align: text-top;
+  text-align: center;
+}
+
+#clubLogos {
+  width: 49%;
+}
+
+#midRight {
+  padding: 2.5%;
+  width: 20%;
+  vertical-align: text-top;
+  text-align: right;
+}
+
+#cart {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(255, 31, 31);
+  font-size: 4.5vw;
+  padding: 1%;
+  color: rgb(255, 255, 255);
+}
+
+/* rgb(255, 31, 31) */
+
+#cartImg {
+  width: 35%;
+}
+
+#cartRight {
+  text-align: center;
+  width: 18%;
+}
+#cartMid {
+  width: 52%;
+}
+#cartLeft {
+  width: 40%;
+}
+
+#changeOrder {
+  margin-top: 5%;
+  background-color: black;
+}
