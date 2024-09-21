@@ -71,6 +71,8 @@ async function readSETUP() {
     bottomRight = data.slice(0, bottomRight);
     data = data.slice(data.indexOf("\n") + 1, data.length);
 
+    majSponsors = [topLeft, topRight, bottomLeft, bottomRight]
+
     // Cheese of Day
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length)
     data = data.slice(data.indexOf("!!!---!!!") + 11, data.length)
@@ -205,11 +207,12 @@ async function readSETUP() {
         // file written successfully
       }
     });
-    console.log(cheeseOfDay, tier3, coupons)
+    console.log(orderItemsG, majSponsors, cheeseOfDay, tier3, coupons)
   });
 }
 
 var orderItemsG
+var majSponsors = []
 var cheeseOfDay = []
 var tier3 = []
 var coupons = []
