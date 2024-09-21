@@ -118,7 +118,7 @@ async function readSETUP() {
       "<title>Order Page</title>" +
       "<link rel='stylesheet' href='orderPage.css'>" +
       "</head>" +
-      "<body>" +
+      "<body> HEEEELLLLLLLLLLLLLLLLLLLLLLOOOOOOOOOOOOOOOOOOOOOOOO" +
       "<table id='thankyou'>" +
       "<tr>" +
       "<td><img src='./bdcLogo.jpg' id='clubLogos'></td>" +
