@@ -184,7 +184,7 @@ async function readSETUP() {
       // Bottom
       "<table id='cart'>" +
       "<tr>" +
-      "<td id='cartLeft'>Cart Total TESTTTTT: $<span id='total'>Error</span></td>" +
+      "<td id='cartLeft'>Cart Total: $<span id='total'>Error</span></td>" +
       "<td id='cartMid'></td>" +
       "<td id='cartRight'><img id='cartImg' src='cart.png' alt='BDC Logo'><br>Checkout</td>" +
       "</tr>" +
@@ -199,6 +199,7 @@ async function readSETUP() {
         // file written successfully
       }
     });
+    console.log(orderItemsG)
   });
 }
 
