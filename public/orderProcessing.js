@@ -1,6 +1,6 @@
 var ticket
 var loadedOrder
-document.getElementById("order").onclick = function () {
+document.getElementById("search").onclick = function () {
     ticket = document.getElementById("ticket").value
     
     var myHeaders = new Headers()
@@ -17,6 +17,24 @@ document.getElementById("order").onclick = function () {
                 body: JSON.stringify(data)
             }).then((res) => res.json()).then((data) => {
                 loadedOrder = data
+                bringUpOrder()
             })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function bringUpOrder() {
+
 }
 

@@ -1,8 +1,9 @@
+import { LinkedList, LinkedListNode } from "@datastructures-js/linked-list";
 import express from "express";
 import fs from "fs";
-import { List } from "linked-list";
 
 function makeLogEntry(comment, data) {
+  data['orderNumber'] = (data['orderNumber']).toString()
   const date = new Date()
   var str = date.getMonth().toString() + "/" + date.getDate().toString() + "/" + date.getFullYear().toString() + " " + date.getHours().toString() + ":" + date.getMinutes().toString();
   // orders.append(new Item([data]))
@@ -31,10 +32,68 @@ async function readSETUP() {
       console.error(err);
       return;
     }
-    var line = data.slice(0, data.indexOf("\n"))
-    console.log(line)
-    data = data.slice(data.indexOf("\n") + 1, data.length);
-    console.log("(", data, ")")
+    var t = 0
+    while (data.length > 5 && t < 10000) {
+      var line = data.slice(0, data.indexOf("\n"))
+      line = line.slice(line.indexOf(",") + 2, line.length);
+      var orderComment = line.slice(0, line.indexOf(",") - 1);
+      line = line.slice(line.indexOf(",") + 15, line.length);
+      var orderName = line.slice(0, line.indexOf(",") - 1);
+      line = line.slice(line.indexOf("[") + 1, line.length);
+      var counts = []
+      var test = 0
+      while (line.indexOf("]") > line.indexOf(",") && test < 10000) {
+        counts.push(line.slice(0, line.indexOf(",")))
+        line = line.slice(line.indexOf(",") + 1, line.length);
+        test++
+      }
+      counts.push(line.slice(0, line.indexOf("]")))
+
+      line = line.slice(line.indexOf(",") + 1, line.length);
+      line = line.slice(line.indexOf(":") + 1, line.length);
+      var orderNumber = line.slice(1, line.indexOf(",") - 2);
+      orderNumber = parseInt(orderNumber)
+      if (masterOrderNum <= orderNumber) {
+        masterOrderNum = orderNumber + 1
+      }
+      t++
+      data = data.slice(data.indexOf("\n") + 1, data.length)
+      
+
+
+      if (orderComment == "New Order") {
+        orders.insertLast(new LinkedListNode([orderNumber, orderName, counts]))
+      } else if (orderComment == "Changed Order") {
+        var node = orders.head()
+        if (node.getValue()[0] == orderNumber) {
+          node.getValue()[2] = counts
+        }
+        while (node.hasNext()) {
+          if (node.getValue()[0] == orderNumber) {
+            node.getValue()[2] = counts
+          }
+          node = node.getNext()
+        }
+        if (node.getValue()[0] == orderNumber) {
+          node.getValue()[2] = counts
+        }
+      } else if (orderComment == "Paid") {
+        var node = orders.head()
+        var i = 0
+        if (node.getValue()[0] == orderNumber) {
+          orders.removeAt(i)
+        } else {
+          while (node.hasNext()) {
+            i++
+            node = node.getNext()
+            if (node.getValue()[0] == orderNumber) {
+              orders.removeAt(i)
+            }
+          }
+        }
+      }
+    }
+    // console.log(orders.head())
   })
 
   // Setup init
@@ -247,7 +306,7 @@ async function readSETUP() {
   });
 }
 
-var orders = new List()
+var orders = new LinkedList()
 var orderItemsG
 var majSponsors = []
 var cheeseOfDay = []
@@ -286,7 +345,7 @@ const port = 3000;
 
 
 // Global varibales
-var orders = {}
+var order = {}
 
 
 
@@ -320,11 +379,11 @@ app.post('/submit', (req, res) => {
     orderNumber = masterOrderNum
     masterOrderNum += 1
     data['orderNumber'] = orderNumber
-    orders[data['orderNumber']] = data
+    order[data['orderNumber']] = data
     updateLog(makeLogEntry("New Order", data));
   } else {
     updateLog(makeLogEntry("Changed Order", data));
-    orders[data[orderNumber]] = data
+    order[data[orderNumber]] = data
   }
   res.status(200).json({ orderNumber: orderNumber });
 })
@@ -332,7 +391,7 @@ app.post('/submit', (req, res) => {
 app.post('/resubmit', (req, res) => {
   let data = (req.body)
   var ticket = data.ticket
-  orders[ticket] = data;
+  order[ticket] = data;
   updateLog(makeLogEntry("Change Order", data));
   // console.log(data)
 })
@@ -344,9 +403,22 @@ app.get('/op', (req, res) => {
 app.post('/orderLookUp', (req, res) => {
   let data = (req.body)
   var ticket = data['ticket']
-
-  res.status(200).json({ orderData: orders[ticket] });
-
+  var orderNumber = parseInt(ticket)
+  var returnData = null
+  var node = orders.head()
+  if (node.getValue()[0] == orderNumber) {
+    returnData = node.getValue()
+  }
+  while (node.hasNext()) {
+    if (node.getValue()[0] == orderNumber) {
+      returnData = node.getValue()
+    }
+    node = node.getNext()
+  }
+  if (node.getValue()[0] == orderNumber) {
+    returnData = node.getValue()
+  }
+  res.status(200).json({ orderData: returnData });
 })
 
 app.listen(port, () => {
