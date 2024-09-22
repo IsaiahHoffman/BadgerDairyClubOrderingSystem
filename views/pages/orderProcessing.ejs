@@ -9,15 +9,21 @@
 </head>
 
 <body>
-    <div id="options">
-        <div id="newOrder">New Order</div>
-        Ticket Number:
-        <input type="number" id="ticket" name="ticket">
-        <span id="search">Search</span>
+    <div id="ordering">
+        <div id="options">
+            <div id="newOrder">New Order</div>
+            Order Number:
+            <input type="number" id="ticket" name="ticket">
+            <div id="search">Search</div>
+        </div>
+        <table id="orders">
+        </table>
     </div>
-    <table id="orders">
 
-    </table>
+    <div hidden='true' id="showingDetails">
+        <div id="close"> Close</div>
+        <table id="infoo"></table>
+    </div>
 
 
 </body>

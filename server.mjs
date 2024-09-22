@@ -67,15 +67,18 @@ async function readSETUP() {
         var node = orders.head()
         if (node.getValue()[0] == orderNumber) {
           node.getValue()[2] = counts
+          node.getValue()[1] = orderName
         }
         while (node.hasNext()) {
           if (node.getValue()[0] == orderNumber) {
             node.getValue()[2] = counts
+            node.getValue()[1] = orderName
           }
           node = node.getNext()
         }
         if (node.getValue()[0] == orderNumber) {
           node.getValue()[2] = counts
+          node.getValue()[1] = orderName
         }
       } else if (orderComment == "Paid") {
         var node = orders.head()
@@ -379,21 +382,15 @@ app.post('/submit', (req, res) => {
     orderNumber = masterOrderNum
     masterOrderNum += 1
     data['orderNumber'] = orderNumber
-    order[data['orderNumber']] = data
     updateLog(makeLogEntry("New Order", data));
+    orders.insertLast(new LinkedListNode([orderNumber, data['orderName'], data['counts']]))
   } else {
     updateLog(makeLogEntry("Changed Order", data));
-    order[data[orderNumber]] = data
+    var node = orders.findOrderNumber(orderNumber)
+    node.getValue()[2] = data['counts']
+    node.getValue()[1] = data['orderName']
   }
   res.status(200).json({ orderNumber: orderNumber });
-})
-
-app.post('/resubmit', (req, res) => {
-  let data = (req.body)
-  var ticket = data.ticket
-  order[ticket] = data;
-  updateLog(makeLogEntry("Change Order", data));
-  // console.log(data)
 })
 
 app.get('/op', (req, res) => {
@@ -421,6 +418,39 @@ app.post('/orderLookUp', (req, res) => {
   res.status(200).json({ orderData: returnData });
 })
 
+app.post('/orders', (req, res) => {
+  var data = []
+  var node = orders.head()
+  data.push(node.getValue())
+  while (node.hasNext()) {
+    node = node.getNext()
+    data.push(node.getValue())
+  }
+  res.status(200).json({ 
+    orderData: data,
+    orderItemsG: orderItemsG
+  });
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
+
+
+LinkedList.prototype.findOrderNumber = function(orderNumber) {
+  var node = orders.head()
+        var i = 0
+        if (node.getValue()[0] == orderNumber) {
+          return node
+        } else {
+          while (node.hasNext()) {
+            i++
+            node = node.getNext()
+            if (node.getValue()[0] == orderNumber) {
+              return node
+            }
+          }
+        }
+}

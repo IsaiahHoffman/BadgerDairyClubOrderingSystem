@@ -6,9 +6,18 @@ body {
     text-align: center;
 }
 
+p {
+    font-size: 2vw;
+}
+
 #search {
     background-color: red;
     padding: 2.5%;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+
 }
 
 #newOrder {
@@ -20,4 +29,50 @@ body {
 #ticket {
     padding: 1%;
     margin: 1%;
+}
+
+#orders {
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border:none;
+    border-collapse: collapse;
+}
+
+.orderRow {
+    background-color: rgb(17, 17, 17);
+}
+
+.orderCol {
+    padding: 2%;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.showDetail {
+    background-color: red;
+    padding: 5%;
+}
+
+.orderBox {
+    background-color: red;
+    padding: 5%;
+}
+
+#close {
+    background-color: red;
+    padding: 5%;
+    width: 85%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#infoo {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-top: 5%;
 }
