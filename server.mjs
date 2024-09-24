@@ -2,6 +2,7 @@ import { LinkedList, LinkedListNode } from "@datastructures-js/linked-list";
 import express from "express";
 import fs from "fs";
 
+
 function makeLogEntry(comment, data) {
   data['orderNumber'] = (data['orderNumber']).toString()
   const date = new Date()
@@ -58,7 +59,7 @@ async function readSETUP() {
       }
       t++
       data = data.slice(data.indexOf("\n") + 1, data.length)
-      
+
 
 
       if (orderComment == "New Order") {
@@ -81,6 +82,7 @@ async function readSETUP() {
           node.getValue()[1] = orderName
         }
       } else if (orderComment == "Paid") {
+        console.log(orderNumber)
         var node = orders.head()
         var i = 0
         if (node.getValue()[0] == orderNumber) {
@@ -382,9 +384,19 @@ app.post('/submit', (req, res) => {
     orderNumber = masterOrderNum
     masterOrderNum += 1
     data['orderNumber'] = orderNumber
+    var couponCounts = []
+    for (var i = 0; i < coupons.length; i++) {
+      couponCounts.push(0)
+    }
+    data['couponCounts'] = couponCounts
     updateLog(makeLogEntry("New Order", data));
     orders.insertLast(new LinkedListNode([orderNumber, data['orderName'], data['counts']]))
   } else {
+    var couponCounts = []
+    for (var i = 0; i < coupons.length; i++) {
+      couponCounts.push(0)
+    }
+    data['couponCounts'] = couponCounts
     updateLog(makeLogEntry("Changed Order", data));
     var node = orders.findOrderNumber(orderNumber)
     node.getValue()[2] = data['counts']
@@ -403,34 +415,99 @@ app.post('/orderLookUp', (req, res) => {
   var orderNumber = parseInt(ticket)
   var returnData = null
   var node = orders.head()
-  if (node.getValue()[0] == orderNumber) {
-    returnData = node.getValue()
-  }
-  while (node.hasNext()) {
+  if (node == null) {
+    res.status(200).json({ orderData: null });
+  } else {
     if (node.getValue()[0] == orderNumber) {
       returnData = node.getValue()
     }
-    node = node.getNext()
+    while (node.hasNext()) {
+      if (node.getValue()[0] == orderNumber) {
+        returnData = node.getValue()
+      }
+      node = node.getNext()
+    }
+    if (node.getValue()[0] == orderNumber) {
+      returnData = node.getValue()
+    }
+    res.status(200).json({ orderData: returnData });
   }
-  if (node.getValue()[0] == orderNumber) {
-    returnData = node.getValue()
-  }
-  res.status(200).json({ orderData: returnData });
 })
 
 app.post('/orders', (req, res) => {
   var data = []
   var node = orders.head()
-  data.push(node.getValue())
-  while (node.hasNext()) {
-    node = node.getNext()
+  if (node == null) {
+    res.status(200).json({
+      orderData: null,
+      orderItemsG: orderItemsG,
+      coupons: coupons
+    });
+  } else {
     data.push(node.getValue())
+    while (node.hasNext()) {
+      node = node.getNext()
+      data.push(node.getValue())
+    }
+    res.status(200).json({
+      orderData: data,
+      orderItemsG: orderItemsG,
+      coupons: coupons
+    });
   }
-  res.status(200).json({ 
-    orderData: data,
-    orderItemsG: orderItemsG
-  });
 })
+
+app.post('/of', (req, res) => {
+  let orderNumber = (req.body['orderNumber'])
+  let node = orders.findOrderNumber(orderNumber)
+  var orderData = null
+  if (node != null) {
+    orderData = node.getValue()
+  }
+  res.status(200).json({
+    orderData: orderData
+  });
+});
+
+app.post('/finalSubmit', (req, res) => {
+  let orderNumber = (req.body['orderNumber'])
+  if (orderNumber == null) {
+    let counts = (req.body['countsCart'])
+    let couponCounts = (req.body['countsCoupons'])
+    let data = ({
+      orderName: "",
+      counts: counts,
+      orderNumber: masterOrderNum,
+      coupons: couponCounts
+    })
+    masterOrderNum += 1
+    updateLog(makeLogEntry("PaidCounter", data))
+    console.log("Order #: " + orderNumber + " completed")
+
+    var test = true
+    res.status(200).json({
+      test: test
+    });
+  } else {
+    let node = orders.findOrderNumber(orderNumber).getValue()
+    for (var j = 0; j < node[2].length; j++) {
+      node[2][j] = parseInt(node[2][j])
+    }
+    let couponCounts = (req.body['countsCoupons'])
+    let data = ({
+      orderName: node[1],
+      counts: node[2],
+      orderNumber: node[0],
+      coupons: couponCounts
+    })
+    updateLog(makeLogEntry("Paid", data))
+    console.log("Order #: " + orderNumber + " completed")
+    var test = orders.removeOrderNumber(orderNumber)
+    res.status(200).json({
+      test: test
+    });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
@@ -439,18 +516,38 @@ app.listen(port, () => {
 
 
 
-LinkedList.prototype.findOrderNumber = function(orderNumber) {
+LinkedList.prototype.findOrderNumber = function (orderNumber) {
   var node = orders.head()
-        var i = 0
-        if (node.getValue()[0] == orderNumber) {
-          return node
-        } else {
-          while (node.hasNext()) {
-            i++
-            node = node.getNext()
-            if (node.getValue()[0] == orderNumber) {
-              return node
-            }
-          }
-        }
+  var i = 0
+  if (node.getValue()[0] == orderNumber) {
+    return node
+  } else {
+    while (node.hasNext()) {
+      i++
+      node = node.getNext()
+      if (node.getValue()[0] == orderNumber) {
+        return node
+      }
+    }
+  }
+  return null
+}
+
+LinkedList.prototype.removeOrderNumber = function (orderNumber) {
+  var node = orders.head()
+  var i = 0
+  if (node.getValue()[0] == orderNumber) {
+    this.removeAt(0)
+    return true
+  } else {
+    while (node.hasNext()) {
+      i++
+      node = node.getNext()
+      if (node.getValue()[0] == orderNumber) {
+        this.removeAt(i)
+        return true
+      }
+    }
+  }
+  return false
 }

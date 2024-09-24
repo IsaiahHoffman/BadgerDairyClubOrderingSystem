@@ -102,4 +102,10 @@ Random Comapny, 5, random.png
 
 !!!---!!!
 Novonesis, 3, novonesis.gif
+Lallemand, 5, Lallemand.png
+Diamond V, 3, DiamondV.png
+DBA, 3, DBA.png
+Starbar/ClariFly, 5, CLS.png
+Bio Vet Shake, 2, BioVetShake.png
+Bio Vet Grilled Cheese, 3, BioVetGC.png
 !!!---!!!
