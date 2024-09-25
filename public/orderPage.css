@@ -29,10 +29,12 @@ body {
 #topLeftMajSpon {
   padding: 3%;
   text-align: left;
+  width: 33%;
 }
 #topRightMajSpon {
   padding: 3%;
   text-align: right;
+  width: 33%;
 }
 
 #bottomLeftMajSpon {
@@ -52,6 +54,11 @@ body {
 
 .majSpon {
   width: 95%;
+}
+
+#dfw {
+  margin-top: 15%;
+  width: 75%;
 }
 
 
@@ -106,7 +113,8 @@ body {
 
 .tier3 {
   width: 100%;
-  margin-top: 10%;
+  margin-top: 40%;
+  margin-bottom: 40%;
 }
 
 #midMid {
@@ -167,4 +175,21 @@ body {
 #changeOrder {
   margin-top: 5%;
   background-color: black;
+}
+
+#largeOrder {
+  width:50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 4.5vw;
+  padding: 2.5%;
+  margin-bottom: 20%;
+}
+
+#-_- img {
+  position: fixed;
+  top: 20%;
+  text-align: center;
+  width:100%;
 }

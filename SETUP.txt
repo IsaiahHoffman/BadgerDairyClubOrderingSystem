@@ -34,9 +34,9 @@ randomPic.jpeg
 
 !!!---!!!
 TopLeft:
-Brevant.png
+Elanco.png
 TopRight:
-Brevant.png
+AMPI.png
 BottomLeft:
 Cargill.png
 BottomRight:
@@ -75,21 +75,14 @@ company1.png
 company2.jpeg
 
 !!!---!!!
-biovet.jpg
-biovet.jpg
-biovet.jpg
-biovet.jpg
-biovet.jpg
-biovet.jpg
-biovet.jpg
-biovet.jpg
-milk.jpg
-biovet.jpg
-biovet.jpg
-milk.jpg
-biovet.jpg
-biovet.jpg
-milk.jpg
+lallemand logo.png
+Phibro.png
+Brevant.png
+Wisconsin Pork Producers.png
+Merck.png
+Elite Environmental Products (biochar company).jpg
+Zoetis.png
+World Dairy Expo.jpg
 !!!---!!!
 
 

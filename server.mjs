@@ -52,7 +52,7 @@ async function readSETUP() {
 
       line = line.slice(line.indexOf(",") + 1, line.length);
       line = line.slice(line.indexOf(":") + 1, line.length);
-      var orderNumber = line.slice(1, line.indexOf(",") - 2);
+      var orderNumber = line.slice(1, line.indexOf(",") - 1);
       orderNumber = parseInt(orderNumber)
       if (masterOrderNum <= orderNumber) {
         masterOrderNum = orderNumber + 1
@@ -82,7 +82,7 @@ async function readSETUP() {
           node.getValue()[1] = orderName
         }
       } else if (orderComment == "Paid") {
-        console.log(orderNumber)
+        // console.log(orderNumber)
         var node = orders.head()
         var i = 0
         if (node.getValue()[0] == orderNumber) {
@@ -96,9 +96,24 @@ async function readSETUP() {
             }
           }
         }
+        for (var j = 0; j < countsNum.length; j++) {
+          countsNum[j] = parseInt(countsNum[j])
+        }
+        totalItemsOrdered += (sumList(countsNum))
+      } else if (orderComment == "PaidCounter") {
+        var countsNum = counts
+        for (var j = 0; j < countsNum.length; j++) {
+          countsNum[j] = parseInt(countsNum[j])
+        }
+        totalItemsOrdered += (sumList(countsNum))
+        masterOrderNum += 1
       }
     }
-    // console.log(orders.head())
+    // var node = orders.head()
+    // while (node.hasNext()) {
+    //   console.log(node)
+    //   node = node.getNext()
+    // }
   })
 
   // Setup init
@@ -237,7 +252,7 @@ async function readSETUP() {
       "<table id='top'>" +
       "<tr>" +
       "<td id='topLeftMajSpon'><img src='./Sponsors/" + topLeft + "' class='majSpon'></img></td>" +
-      "<td id='cheeseSpons' rowspan='2'>Cheese of the Day<br> brought to you by <br><img src='./Sponsors/Cheese Sponsors/<%= cheeseOfTheDayLogo %>' class='majSpon'></td>" +
+      "<td id='cheeseSpons' rowspan='2'>Cheese of the Day<br> brought to you by <br><img src='./Sponsors/Cheese Sponsors/<%= cheeseOfTheDayLogo %>' class='majSpon'><img src='./Sponsors/DFW.jpg' id='dfw' class='majSpon'></td>" +
       "<td id='topRightMajSpon'><img src='./Sponsors/" + topRight + "' class='majSpon'></td>" +
       "</tr>" +
       "<tr>" +
@@ -258,6 +273,8 @@ async function readSETUP() {
       "<td id='midMid'>" +
       "<div hidden='true' id='thankYou'>Order Number: <br> <div id='orderNumber'>Error</div><br>Thank you for your order! <div id='changeOrder'>Change Order</div></div>" +
       "<div id='ordering'>" +
+      "<p>Schedule pickups for orders larger than 40 items <br>(atleast 2 hours in advance)</p>" +
+      "<div class='button' id='largeOrder'>Large Order</div>" +
       "<p>Name: <input id='nameInput'></p>"
     for (var i = 0; i < orderItems.length; i++) {
       content = content +
@@ -299,7 +316,7 @@ async function readSETUP() {
       "</table>"
 
 
-    content += "</body> <script src='orderPage.js'></script></html>"
+    content += "<div hidden='true' id='-_-'><img src='-_-.jpg'></div></body> <script src='orderPage.js'></script></html>"
     fs.writeFile('./views/pages/orderPage.ejs', content, err => {
       if (err) {
         console.error(err);
@@ -312,6 +329,7 @@ async function readSETUP() {
 }
 
 var orders = new LinkedList()
+var totalItemsOrdered = 0
 var orderItemsG
 var majSponsors = []
 var cheeseOfDay = []
@@ -401,6 +419,7 @@ app.post('/submit', (req, res) => {
     var node = orders.findOrderNumber(orderNumber)
     node.getValue()[2] = data['counts']
     node.getValue()[1] = data['orderName']
+    console.log()
   }
   res.status(200).json({ orderNumber: orderNumber });
 })
@@ -478,7 +497,7 @@ app.post('/finalSubmit', (req, res) => {
       orderName: "",
       counts: counts,
       orderNumber: masterOrderNum,
-      coupons: couponCounts
+      couponCounts: couponCounts
     })
     masterOrderNum += 1
     updateLog(makeLogEntry("PaidCounter", data))
@@ -507,6 +526,17 @@ app.post('/finalSubmit', (req, res) => {
       test: test
     });
   }
+});
+
+app.get('/dp', (req, res) => {
+  fs.readFile('log' + year + '.txt', 'utf8', async (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    (await data)
+    res.render('pages/dataProcessing', { totalItemsOrdered: totalItemsOrdered, data: data });
+  })
 });
 
 app.listen(port, () => {
@@ -550,4 +580,12 @@ LinkedList.prototype.removeOrderNumber = function (orderNumber) {
     }
   }
   return false
+}
+
+function sumList(list) {
+  var total = 0
+  for (var i = 0; i < list.length; i++) {
+    total += list[i]
+  }
+  return total
 }

@@ -26,6 +26,8 @@ var tier3
 var counts = []
 var buttons = []
 var cartPrice = 0
+var warnedLargeOrder = false
+var warnedLargeOrder2 = false
 
 function init() {
     document.getElementById("total").innerHTML = cartPrice
@@ -35,10 +37,20 @@ function init() {
 
     for (var i = 0; i < orderItems.length; i++) {
         // set up increase buttons
-        buttons.push(document.getElementById(orderItems[i][0] + "inc").onclick = function () {
+        buttons.push(document.getElementById(orderItems[i][0] + "inc").onclick = async function () {
             for (var j = 0; j < orderItems.length; j++) {
                 if (orderItems[j][0] + "inc" == this.id) {
                     counts[j] += 1
+                    if (!warnedLargeOrder && sumList(counts) > 40) {
+                        alert("Please consider making a large order request!")
+                        warnedLargeOrder = true
+                    }
+                    if (!warnedLargeOrder2 && sumList(counts) > 99) {
+                        document.getElementById("-_-").hidden = false
+                        warnedLargeOrder2 = true
+                        await sleep(3000)
+                        document.getElementById("-_-").hidden = true
+                    }
                     document.getElementById(orderItems[j][0] + "Num").innerHTML = counts[j]
                     cartPrice += parseInt(orderItems[j][1])
                     document.getElementById("total").innerHTML = cartPrice
@@ -58,6 +70,10 @@ function init() {
                     }
                 }
             }
+        })
+
+        buttons.push(document.getElementById("largeOrder").onclick = function () {
+            alert("Coming soon") //ToDo
         })
 
         buttons.push(document.getElementById("cartRight").onclick = async function () {
@@ -94,13 +110,25 @@ function init() {
         o.push(i)
     }
     for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    o = o.concat(o).concat(o)
     var midRight = document.getElementById("midRight")
     var midLeft = document.getElementById("midLeft")
     var refs = [midLeft, midRight]
     var r = 0
     for (var i = 0; i < o.length; i++) {
         var ref = refs[r % 2]
-        ref.innerHTML += "<img src='./Sponsors/Tier 3/" + tier3[o[i]] + "' class='tier3'></img><br>"
+        ref.innerHTML += "<img src='./Sponsors/Tier 3/" + tier3[o[i]] + "' class='tier3' alt='" + tier3[o[i]].slice(0, tier3[o[i]].indexOf('.')) + "'></img><br>"
         r++
     }
 }
+
+
+function sumList(list) {
+    var total = 0
+    for (var i = 0; i < list.length; i++) {
+        total += list[i]
+    }
+    return total
+}
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
