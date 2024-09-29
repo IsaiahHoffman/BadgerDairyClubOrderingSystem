@@ -123,7 +123,6 @@ async function readSETUP() {
       console.error(err);
       return;
     }
-
     // Order items
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length);
     data = data.slice(data.indexOf("!!!---!!!") + 9, data.length);
@@ -228,7 +227,10 @@ async function readSETUP() {
       coupons.push([name, value, fileName])
       test++
     }
-
+    for (var i = 0; i < orderItems.length; i++) {
+      orderItems[i].push(true)
+    }
+    orderItems[3][3] = (false) //remove
 
     orderItemsG = orderItems
     var content =
@@ -278,6 +280,7 @@ async function readSETUP() {
       "<p>Name: <input id='nameInput'></p>"
     for (var i = 0; i < orderItems.length; i++) {
       content = content +
+      "<div id='" + orderItems[i][0] + "orderItemTable'>" +
         "<p>" + orderItems[i][0] + "</p>" +
 
         "<table class='orderItemTable'>" +
@@ -293,7 +296,7 @@ async function readSETUP() {
         "<td class='increase' id='" + orderItems[i][0] + "inc'><div class='button'>+</div></td>" +
         "<td class='price'>" + "$" + orderItems[i][1] + "</td>" +
         "</tr>" +
-        "</table>"
+        "</table></div>"
 
       "$" + orderItems[i][1]
     }
@@ -537,6 +540,10 @@ app.get('/dp', (req, res) => {
     (await data)
     res.render('pages/dataProcessing', { totalItemsOrdered: totalItemsOrdered, data: data });
   })
+});
+
+app.get('/settings', (req, res) => {
+    res.render('pages/settings', { orderData : orderData});
 });
 
 app.listen(port, () => {

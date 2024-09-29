@@ -16,7 +16,7 @@ async function load() {
     }).then((res) => res.json()).then((data) => {
         response = data['data'];
         tier3 = data['tier3']
-        orderItems = response
+        orderItems = response        
         init()
     })
 }
@@ -34,9 +34,16 @@ function init() {
     for (var j = 0; j < orderItems.length; j++) {
         counts.push(0)
     }
-
+    for (var i = 0; i < orderItems.length; i++) {
+        if (!orderItems[i][3]) {
+            document.getElementById(orderItems[i][0] + "orderItemTable").hidden = true
+        }
+    }
     for (var i = 0; i < orderItems.length; i++) {
         // set up increase buttons
+        if (!orderItems[i][3]) {
+            continue
+        }
         buttons.push(document.getElementById(orderItems[i][0] + "inc").onclick = async function () {
             for (var j = 0; j < orderItems.length; j++) {
                 if (orderItems[j][0] + "inc" == this.id) {
@@ -61,6 +68,9 @@ function init() {
         // set up decrease buttons
         buttons.push(document.getElementById(orderItems[i][0] + "dec").onclick = function () {
             for (var j = 0; j < orderItems.length; j++) {
+                if (!orderItems[i][3]) {
+                    continue
+                }
                 if (orderItems[j][0] + "dec" == this.id) {
                     if (counts[j] - 1 > -1) {
                         counts[j] -= 1
@@ -73,7 +83,7 @@ function init() {
         })
 
         buttons.push(document.getElementById("largeOrder").onclick = function () {
-            alert("Coming soon") //ToDo
+            alert("Please text or call Grace: 612-246-7162 or Isaiah: 717-803-1649 with your order.") //ToDo
         })
 
         buttons.push(document.getElementById("cartRight").onclick = async function () {
