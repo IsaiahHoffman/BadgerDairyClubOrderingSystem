@@ -35,8 +35,9 @@ function init() {
         counts.push(0)
     }
     for (var i = 0; i < orderItems.length; i++) {
-        if (!orderItems[i][3]) {
+        if (orderItems[i][3]) {
             document.getElementById(orderItems[i][0] + "orderItemTable").hidden = true
+            document.getElementById("soldOut").innerHTML += "<tr><td>" + orderItems[i][0] + "</td><td>not available</td></tr>"
         }
     }
     for (var i = 0; i < orderItems.length; i++) {

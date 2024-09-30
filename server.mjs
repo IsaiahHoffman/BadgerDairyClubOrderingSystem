@@ -228,9 +228,8 @@ async function readSETUP() {
       test++
     }
     for (var i = 0; i < orderItems.length; i++) {
-      orderItems[i].push(true)
+      orderItems[i].push(false)
     }
-    orderItems[3][3] = (false) //remove
 
     orderItemsG = orderItems
     var content =
@@ -277,10 +276,11 @@ async function readSETUP() {
       "<div id='ordering'>" +
       "<p>Schedule pickups for orders larger than 40 items <br>(atleast 2 hours in advance)</p>" +
       "<div class='button' id='largeOrder'>Large Order</div>" +
+      "<p>Please remember your order number or enter your name below.</p>" +
       "<p>Name: <input id='nameInput'></p>"
     for (var i = 0; i < orderItems.length; i++) {
       content = content +
-      "<div id='" + orderItems[i][0] + "orderItemTable'>" +
+        "<div id='" + orderItems[i][0] + "orderItemTable'>" +
         "<p>" + orderItems[i][0] + "</p>" +
 
         "<table class='orderItemTable'>" +
@@ -302,7 +302,7 @@ async function readSETUP() {
     }
     content = content +
       "</div>" +
-      "</td>" +
+      "<table id='soldOut'></table></td>" +
       // Ads right
       "<td id='midRight'>" +
       "</td>" +
@@ -543,7 +543,20 @@ app.get('/dp', (req, res) => {
 });
 
 app.get('/settings', (req, res) => {
-    res.render('pages/settings', { orderData : orderData});
+  res.render('pages/settings', { orderDataG: orderItemsG });
+});
+
+app.post('/settings', (req, res) => {
+  let id = (req.body['id'])
+  for (var i = 0; i < orderItemsG.length; i++) {
+    if (orderItemsG[i][0] == id) {
+      var truth = req.body['truth']
+      orderItemsG[i][3] = truth
+    }
+  }
+  res.status(200).json({
+    test: true
+  });
 });
 
 app.listen(port, () => {

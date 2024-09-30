@@ -11,16 +11,22 @@ Random Gilled Cheese, 100, RandomGrilledCheesePic.jpg
 Random Gilled Cheese 2, 50, NA
 
 !!!---!!!
+Pepper Jack (Monday Specialty), 3, NA
+Double Smoked Cheddar (Tuesday Specialty), 3, NA
+Havarti (Wednesday Specialty), 3, NA
+Gouda (Wednesday Specialty), 3, NA
+Aged Cheddar (Thursday Specialty), 3, NA
+Maple Bacon Cheddar (Friday Specialty), 3, NA
 American Grilled Cheese, 3, american.jpg
 Swiss Grilled Cheese, 3, NA
-Specialty, 3, NA
-Ham & Cheese, 4, NA
+Ham and Cheese, 4, NA
 Chocolate Shake, 2, NA
-Milk, 1, milk.jpg
-Chocolate Milk, 1, NA
+Milk, 1, NA
+Chocolate Milk, 1, milk.jpg
 Orange Juice, 1, NA
 Coffee, 1, NA
 Hot Chocolate, 1, NA
+Water, 1, NA
 !!!---!!!
 
 
@@ -54,15 +60,15 @@ randomCheese.png
 
 !!!---!!!
 Monday:
-Arla.png
+test.png
 Tuesday:
-BrooksFarms.png
-Wednesday:
 Saputo.png
+Wednesday:
+Arla.png
 Thursday:
-Shullsburg.png
+BrooksFarms.png
 Friday:
-SpringGreen.jpg
+Shullsburg.png
 !!!---!!!
 
 
@@ -92,13 +98,61 @@ Coupons:
 # 2. Add company name, monetary value, filename of picture below
 Example:
 Random Comapny, 5, random.png
-
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 !!!---!!!
-Novonesis, 3, novonesis.gif
-Lallemand, 5, Lallemand.png
-Diamond V, 3, DiamondV.png
-DBA, 3, DBA.png
-Starbar/ClariFly, 5, CLS.png
+Agromatic, 3, Agromatic.png
+AMPI, 3, AMPI.png
+ArmHammer, 3, ArmHammer.png
+Aspen Grilled Cheese, 3, Aspen Grilled Cheese.png
+Aspen Shake, 2, Aspen Shake.png
+Balchem, 3, balchem.png
 Bio Vet Shake, 2, BioVetShake.png
 Bio Vet Grilled Cheese, 3, BioVetGC.png
+BoehringerIngelheim, 3, BoehringerIngelheim.png
+BouMatic, 3, BouMatic.png
+Brevant, 3, Brevant.png
+Brown Swiss Youth Association, 5, Brown Swiss Youth Association.png
+Cargill, 3, Cargill.png
+Compeer Finacial Grilled Cheese, 3, Compeer.png
+Compeer Fincial Shake, 2, CompeerShake.png
+Cowmanager, 5, Cowmanager.png
+CRV, 3, CRV.png
+DBA, 3, DBA.png
+Diamond V, 3, DiamondV.png
+DFW, 5, DFW.png
+Elanco, 3, Elanco.png
+Elite Environmental Products Grilled Cheese, 3, Elite Environmental Products Grilled Cheese.png
+Elite Environmental Products Grilled Cheese and Shake, 5, Elite Environmental Products.png
+Farm, 5, Farm.png
+Foremost, 3, Foremost.png
+Future Cow, 3, Future Cow.png
+Henke Sass Wolf, 1, Henke Sass Wolf.png
+Hunnard, 3, Hunnard.png
+Lallemand, 5, Lallemand.png
+Lake Ridge Bank, 3, Lake Ridge Bank.png
+LandOLakes, 5, LandOLakes.png
+Low Carbon Technologies, 3, Low Carbon Technologies.png
+McLanahan Grilled Cheese, 3, McLanahan Grilled Cheese.png
+McLanahan Shake, 2, McLanahan Shake.png
+McLanahan Drink, 1, McLanahan Drink.png
+McNess, 5, McNess.png
+Merck, 3, Merck.png
+Novonesis, 3, novonesis.gif
+NutraDrip, 3, NutraDrip Grilled Cheese.png
+Phibro Grilled Cheese, 3, Phibro Grilled Cheese.png
+Phibro Shake, 2, Phibro Milk Shake.png
+Provita Cheese, 3, Provita Cheese.png
+Purebred Dairy Cattle Association, 3, Purebred Dairy Cattle Association.png
+Quality Liquid Feeds, 3, Quality Liquid Feeds.png
+Starbar/ClariFly, 5, CLS.png
+Supervisor Systems, 5, Supervisor Systems.png
+Trans Ova Grilled Cheese, 3, Trans Ova Grilled Cheese.png
+Trans Ova Shake, 2, Trans Ova Milk Shake.png
+Triple Hil Sires, 3, Triple Hil Sires.png
+Uniform Agri Grilled Cheese, 3, Uniform Agri Grilled Cheese.png
+Uniform Agri Shake, 2, Uniform Agri Shake.png
+VAS, 3, VAS.png
+Westway, 3, Westway.png
+World Dairy Expo (All Types), 3, WorldDairyExpo.png
+Zoetis, 3, Zoetis.png
 !!!---!!!
