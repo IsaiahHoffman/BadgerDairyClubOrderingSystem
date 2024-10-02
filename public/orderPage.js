@@ -28,7 +28,6 @@ var buttons = []
 var cartPrice = 0
 var warnedLargeOrder = false
 var warnedLargeOrder2 = false
-
 function init() {
     document.getElementById("total").innerHTML = cartPrice
     for (var j = 0; j < orderItems.length; j++) {
@@ -40,9 +39,11 @@ function init() {
             document.getElementById("soldOut").innerHTML += "<tr><td>" + orderItems[i][0] + "</td><td>not available</td></tr>"
         }
     }
+
     for (var i = 0; i < orderItems.length; i++) {
         // set up increase buttons
-        if (!orderItems[i][3]) {
+        if (orderItems[i][3]) {
+            console.log(!orderItems[i][3])
             continue
         }
         buttons.push(document.getElementById(orderItems[i][0] + "inc").onclick = async function () {
@@ -69,7 +70,7 @@ function init() {
         // set up decrease buttons
         buttons.push(document.getElementById(orderItems[i][0] + "dec").onclick = function () {
             for (var j = 0; j < orderItems.length; j++) {
-                if (!orderItems[i][3]) {
+                if (orderItems[j][3]) {
                     continue
                 }
                 if (orderItems[j][0] + "dec" == this.id) {

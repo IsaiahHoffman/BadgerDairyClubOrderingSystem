@@ -34,7 +34,7 @@ async function readSETUP() {
       return;
     }
     var t = 0
-    while (data.length > 5 && t < 10000) {
+    while (data.length > 5 && t < 100000000) {
       var line = data.slice(0, data.indexOf("\n"))
       line = line.slice(line.indexOf(",") + 2, line.length);
       var orderComment = line.slice(0, line.indexOf(",") - 1);
@@ -99,13 +99,14 @@ async function readSETUP() {
         for (var j = 0; j < countsNum.length; j++) {
           countsNum[j] = parseInt(countsNum[j])
         }
-        totalItemsOrdered += (sumList(countsNum))
+        // totalItemsOrdered += (sumList(countsNum))
       } else if (orderComment == "PaidCounter") {
         var countsNum = counts
         for (var j = 0; j < countsNum.length; j++) {
           countsNum[j] = parseInt(countsNum[j])
         }
-        totalItemsOrdered += (sumList(countsNum))
+        // console.log(totalItemsOrdered)
+        // totalItemsOrdered += (sumList(countsNum))
         masterOrderNum += 1
       }
     }
@@ -332,7 +333,6 @@ async function readSETUP() {
 }
 
 var orders = new LinkedList()
-var totalItemsOrdered = 0
 var orderItemsG
 var majSponsors = []
 var cheeseOfDay = []
@@ -422,7 +422,6 @@ app.post('/submit', (req, res) => {
     var node = orders.findOrderNumber(orderNumber)
     node.getValue()[2] = data['counts']
     node.getValue()[1] = data['orderName']
-    console.log()
   }
   res.status(200).json({ orderNumber: orderNumber });
 })
@@ -538,7 +537,7 @@ app.get('/dp', (req, res) => {
       return;
     }
     (await data)
-    res.render('pages/dataProcessing', { totalItemsOrdered: totalItemsOrdered, data: data });
+    res.render('pages/dataProcessing', { data: data });
   })
 });
 

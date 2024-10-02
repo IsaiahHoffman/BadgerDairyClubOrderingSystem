@@ -13,15 +13,15 @@ Random Gilled Cheese 2, 50, NA
 !!!---!!!
 Pepper Jack (Monday Specialty), 3, NA
 Double Smoked Cheddar (Tuesday Specialty), 3, NA
-Havarti (Wednesday Specialty), 3, NA
-Gouda (Wednesday Specialty), 3, NA
-Aged Cheddar (Thursday Specialty), 3, NA
+Havarti (Wednesday Specialty), 3, HavGou.jpg
+Gouda (Wednesday Specialty), 3, HavGou.jpg
+Aged Cheddar (Thursday Specialty), 3, AgedChed.jpg
 Maple Bacon Cheddar (Friday Specialty), 3, NA
 American Grilled Cheese, 3, american.jpg
-Swiss Grilled Cheese, 3, NA
-Ham and Cheese, 4, NA
+Swiss Grilled Cheese, 3, Swiss.png
+Ham and Cheese, 4, HamAmer.png
 Chocolate Shake, 2, NA
-Milk, 1, NA
+Milk, 1, White Milk.png
 Chocolate Milk, 1, milk.jpg
 Orange Juice, 1, NA
 Coffee, 1, NA

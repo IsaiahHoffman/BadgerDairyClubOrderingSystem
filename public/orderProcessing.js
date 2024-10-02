@@ -299,7 +299,26 @@ async function bringUpOrder(orderData) {
                 mode: 'cors',
                 cache: 'default',
                 body: JSON.stringify(data)
-            }).then((res) => res.json()).then((data) => {
+            }).then((res) => res.json()).then(async (data) => {
+                document.getElementById("showingDetails").hidden = false
+                document.getElementById("bringUpOrder").hidden = true
+                var table = document.getElementById("infoo")
+                table.innerHTML = ""
+                for (var i = 0; i < countsCart.length; i++) {
+                    if (countsCart[i] != 0) {
+                        table.innerHTML += ('<tr><td>' + orderItemsG[i][0] + ":</td><td>" + countsCart[i] + "</td></tr>")
+                    }
+                }
+                document.getElementById("close").onclick = function () {
+                    var ordering = document.getElementById("ordering")
+                    ordering.hidden = false
+                    var showingDetails = document.getElementById("showingDetails")
+                    showingDetails.hidden = true
+                    window.scrollTo(0, scrollLocY)
+                    location.reload()
+                }
+                await sleep(100000)
+
                 location.reload()
                 document.getElementById("cartTotal").innerHTML = 0
                 document.getElementById("cartDiscount").innerHTML = 0
