@@ -275,7 +275,7 @@ async function readSETUP() {
       "<td id='midMid'>" +
       "<div hidden='true' id='thankYou'>Order Number: <br> <div id='orderNumber'>Error</div><br>Thank you for your order! <div id='changeOrder'>Change Order</div></div>" +
       "<div id='ordering'>" +
-      "<p>Schedule pickups for orders larger than 40 items <br>(atleast 2 hours in advance)</p>" +
+      "<p>Cheese Stand Hours:<br>9am - 7pm<br><br>Schedule pickups for orders larger than 40 items <br>(atleast 2 hours in advance)</p>" +
       "<div class='button' id='largeOrder'>Large Order</div>" +
       "<p>Please remember your order number or enter your name below.</p>" +
       "<p>Name: <input id='nameInput'></p>"
