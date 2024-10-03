@@ -544,6 +544,19 @@ app.get('/dp', (req, res) => {
   })
 });
 
+app.post('/dpp', (req, res) => {
+  fs.readFile('log' + year + '.txt', 'utf8', async (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    (await data)
+    res.status(200).json({
+      data: data
+     });
+  })
+});
+
 app.get('/settings', (req, res) => {
   res.render('pages/settings', { orderDataG: orderItemsG });
 });
