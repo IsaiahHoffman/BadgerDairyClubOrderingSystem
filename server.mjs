@@ -537,7 +537,10 @@ app.get('/dp', (req, res) => {
       return;
     }
     (await data)
-    res.render('pages/dataProcessing', { data: data });
+    res.render('pages/dataProcessing', { 
+      data: data,
+      orderItemsG: orderItemsG
+     });
   })
 });
 
