@@ -14,7 +14,7 @@ Random Gilled Cheese 2, 50, NA
 Pepper Jack (Monday Specialty), 3, NA
 Double Smoked Cheddar (Tuesday Specialty), 3, NA
 Maple Bacon Cheddar (Friday Specialty), 3, NA
-Maple Bacon Cheddar and Ham, 3, NA
+Maple Bacon Cheddar and Ham, 4, NA
 American Grilled Cheese, 3, american.jpg
 Swiss Grilled Cheese, 3, Swiss.png
 Ham and Cheese, 4, HamAmer.png
