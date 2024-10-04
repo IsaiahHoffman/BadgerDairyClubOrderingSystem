@@ -13,10 +13,8 @@ Random Gilled Cheese 2, 50, NA
 !!!---!!!
 Pepper Jack (Monday Specialty), 3, NA
 Double Smoked Cheddar (Tuesday Specialty), 3, NA
-Havarti (Wednesday Specialty), 3, HavGou.jpg
-Gouda (Wednesday Specialty), 3, HavGou.jpg
-Aged Cheddar (Thursday Specialty), 3, AgedChed.jpg
 Maple Bacon Cheddar (Friday Specialty), 3, NA
+Maple Bacon Cheddar and Ham, 3, NA
 American Grilled Cheese, 3, american.jpg
 Swiss Grilled Cheese, 3, Swiss.png
 Ham and Cheese, 4, HamAmer.png
@@ -124,6 +122,7 @@ Elanco, 3, Elanco.png
 Elite Environmental Products Grilled Cheese, 3, Elite Environmental Products Grilled Cheese.png
 Elite Environmental Products Grilled Cheese and Shake, 5, Elite Environmental Products.png
 Farm, 5, Farm.png
+Farm First, 3, Farm First.jpg
 Foremost, 3, Foremost.png
 Future Cow, 3, Future Cow.png
 Henke Sass Wolf, 1, Henke Sass Wolf.png
